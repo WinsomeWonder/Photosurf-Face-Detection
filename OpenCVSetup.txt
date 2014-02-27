@@ -1,0 +1,4 @@
+How to Setup Open CV on computer:
+1) Install Open CV
+2) Open a CMD with run as administrator
+3) type setx -m OPENCV_DIR directoryWhereOpenCVIsLocated\build\x86\vc12
