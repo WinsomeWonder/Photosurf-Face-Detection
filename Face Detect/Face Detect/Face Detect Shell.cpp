@@ -2,15 +2,16 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 #include <string>
-#include "SkinDetector.h"
+
+#include "FaceDetect.h"
 
 using namespace cv;
 using namespace std;
 
+void thresholdChange();
 void processImage(string input, SkinDetector detect);
 void end(void);
-void thresholdChange(string input, SkinDetector detect);
-int skinTonePixels(cv::Mat input);
+
 
 int main( int argc, char** argv )
 {
@@ -20,7 +21,7 @@ int main( int argc, char** argv )
 
 	while(1)
 	{
-		cout <<"Input the image you would like to display, type change threshold, or type done" << endl;
+		cout <<"Input the image you would like to display or type done" << endl;
 
 		/*Proper use: Needs to be system path!!!*/
 	    getline(cin, input);
@@ -29,11 +30,11 @@ int main( int argc, char** argv )
 		{
 			end();
 		}
-
+		/*
 		if(input.compare("change threshold") == 0)
 		{
 			thresholdChange(input, detect);
-		}
+		}*/
 
 		processImage(input, detect);
 	}
@@ -42,10 +43,12 @@ int main( int argc, char** argv )
 void processImage(string input, SkinDetector detect)
 {
 	int count;
-	Mat image;
-	Mat skinMasked;
-	image = imread(input, CV_LOAD_IMAGE_COLOR);   // Read the file
+	cv::Mat image;
+	cv::Mat skinMasked;
+	image = cv::imread(input, CV_LOAD_IMAGE_COLOR);   // Read the file
 
+
+	FaceDetector face;
 
 	if(! image.data )                              // Check for invalid input
 	{
@@ -67,38 +70,10 @@ void processImage(string input, SkinDetector detect)
 		waitKey(0);								// Wait for a keystroke in the window
 
 		/*count skin tone pixels*/
-		count = skinTonePixels(skinMasked);
+		count = face.skinTonePixels(skinMasked);
 
 		cout <<"Here is the count " << count << endl; 
 	}
-}
-
-int skinTonePixels(cv::Mat input)
-{
-	int count = 0;
-	for(int r = 0; r < input.rows; r++)
-	{
-		for(int c = 0; c < input.cols; c++)
-		{
-			cv::Vec3b pix = input.at<cv::Vec3b>(r,c);
-
-			//inRange will change the value within the threshold to 255
-			if(pix[0] == 255 && 
-				pix[1] == 255 &&
-				pix[2] == 255)
-			{
-				count++;
-			}
-		}
-	}
-	return count;
-}
-
-/*IT'S THE END AND IT DOESN'T EVEN MATTER*/
-void end(void)
-{
-	cout<< "Goodbye!" << endl;
-	exit(0);
 }
 
 /* Change Threshold helper */
@@ -128,3 +103,11 @@ void thresholdChange(string input, SkinDetector detect)
 	*/
 	detect.changeThreshold(0, 255, crMin, crMax, cbMin, cbMax);
 }
+
+/*IT'S THE END AND IT DOESN'T EVEN MATTER*/
+void end(void)
+{
+	cout<< "Goodbye!" << endl;
+	exit(0);
+}
+

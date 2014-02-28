@@ -16,6 +16,8 @@
 #include<opencv\cv.h>
 using namespace std;
 
+
+
 class SkinDetector
 {
    public:

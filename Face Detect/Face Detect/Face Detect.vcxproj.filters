@@ -21,9 +21,15 @@
     <ClCompile Include="SkinDetect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FaceDetect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SkinDetector.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FaceDetect.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

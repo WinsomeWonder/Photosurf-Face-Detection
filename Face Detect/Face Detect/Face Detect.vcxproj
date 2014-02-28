@@ -144,9 +144,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Face Detect Shell.cpp" />
+    <ClCompile Include="FaceDetect.cpp" />
     <ClCompile Include="SkinDetect.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FaceDetect.h" />
     <ClInclude Include="SkinDetector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
