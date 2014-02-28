@@ -12,3 +12,5 @@
 
 /*
 */
+
+int skinTone

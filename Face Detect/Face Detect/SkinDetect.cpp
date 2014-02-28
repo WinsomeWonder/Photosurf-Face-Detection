@@ -14,6 +14,7 @@
 
 #include "SkinDetector.h"
 #include"opencv2\opencv.hpp"
+#include "opencv2\core\core.hpp"
 
 SkinDetector::SkinDetector(void)
 {
@@ -56,5 +57,26 @@ void SkinDetector::changeThreshold(int yMin, int yMax, int crMin, int crMax, int
 	SkinDetector::Cb_MIN = cbMin;
 	SkinDetector::Cb_MAX = cbMax;
 }
+/*
+int skinTonePixels(cv::Mat input)
+{
+	int count = 0;
+	for(int r = 0; r < input.rows; r++)
+	{
+		for(int c = 0; c < input.cols; c++)
+		{
+			cv::Vec3b pix = input.at<cv::Vec3b>(r,c);
+
+			//inRange will change the value within the threshold to 255
+			if(pix[0] == 255 && 
+				pix[1] == 255 &&
+				pix[2] == 255)
+			{
+				count++;
+			}
+		}
+	}
+	return count;
+}*/
 
 //end of SkinDetector.cpp file
