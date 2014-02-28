@@ -16,7 +16,7 @@
 #include<opencv\cv.h>
 using namespace std;
 
-
+#define SMALLEST_SIZE 48
 
 class SkinDetector
 {
@@ -45,7 +45,7 @@ class SkinDetector
          Skin Tone Pixel Number
 		    Meant for use after being masked
       */
-      //int skinTonePixels(cv::Mat input);
+      int skinTonePixels(cv::Mat input);
 
    private:
       int Y_MIN; //0

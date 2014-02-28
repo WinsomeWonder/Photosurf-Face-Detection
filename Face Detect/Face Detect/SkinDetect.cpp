@@ -57,14 +57,19 @@ void SkinDetector::changeThreshold(int yMin, int yMax, int crMin, int crMax, int
 	SkinDetector::Cb_MIN = cbMin;
 	SkinDetector::Cb_MAX = cbMax;
 }
-/*
-int skinTonePixels(cv::Mat input)
+
+int SkinDetector::skinTonePixels(cv::Mat input)
 {
 	int count = 0;
-	for(int r = 0; r < input.rows; r++)
+
+	for(int r = 0; r < input.rows - SMALLEST_SIZE; r++)
 	{
-		for(int c = 0; c < input.cols; c++)
-		{
+		for(int c = 0; c < input.cols - SMALLEST_SIZE; c++)
+		{/*
+			if(r > 1300)
+			{
+			   cout << "row " << r << " col " << c << " total rows " << input.rows << " total cols " << input.cols << endl;
+			}*/
 			cv::Vec3b pix = input.at<cv::Vec3b>(r,c);
 
 			//inRange will change the value within the threshold to 255
@@ -76,7 +81,8 @@ int skinTonePixels(cv::Mat input)
 			}
 		}
 	}
+
 	return count;
-}*/
+}
 
 //end of SkinDetector.cpp file

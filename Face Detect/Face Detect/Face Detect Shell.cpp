@@ -8,8 +8,8 @@
 using namespace cv;
 using namespace std;
 
-void thresholdChange();
-void processImage(string input, SkinDetector detect);
+void thresholdChange(string input, FaceDetector detect);
+void processImage(string input, FaceDetector detect);
 void end(void);
 
 
@@ -17,7 +17,7 @@ int main( int argc, char** argv )
 {
 
 	string input;
-    SkinDetector detect;
+    FaceDetector detect;
 
 	while(1)
 	{
@@ -30,17 +30,17 @@ int main( int argc, char** argv )
 		{
 			end();
 		}
-		/*
+		
 		if(input.compare("change threshold") == 0)
 		{
 			thresholdChange(input, detect);
-		}*/
+		}
 
 		processImage(input, detect);
 	}
 }
 
-void processImage(string input, SkinDetector detect)
+void processImage(string input, FaceDetector detect)
 {
 	int count;
 	cv::Mat image;
@@ -63,21 +63,21 @@ void processImage(string input, SkinDetector detect)
 		waitKey(0);								// Wait for a keystroke in the window
 
 		/*Display thresholding image*/
-		skinMasked = detect.getSkin(image);
+		skinMasked = face.skinMasking(image);
 		cout << "Here is the skin detected image" << endl;
 		namedWindow("Masked Skin Image", WINDOW_AUTOSIZE);
 		imshow("Masked Skin Image", skinMasked);
 		waitKey(0);								// Wait for a keystroke in the window
 
 		/*count skin tone pixels*/
-		count = face.skinTonePixels(skinMasked);
+		count = face.skinTonePixels(image);
 
 		cout <<"Here is the count " << count << endl; 
 	}
 }
 
 /* Change Threshold helper */
-void thresholdChange(string input, SkinDetector detect)
+void thresholdChange(string input, FaceDetector detect)
 {
 	size_t pos;
 	int crMin, crMax, cbMin, cbMax;
@@ -101,7 +101,7 @@ void thresholdChange(string input, SkinDetector detect)
 	/* OBSERVATIONS
 	   yMin and yMax do not seem to make much of a difference
 	*/
-	detect.changeThreshold(0, 255, crMin, crMax, cbMin, cbMax);
+	detect.thresholdChange(0, 255, crMin, crMax, cbMin, cbMax);
 }
 
 /*IT'S THE END AND IT DOESN'T EVEN MATTER*/

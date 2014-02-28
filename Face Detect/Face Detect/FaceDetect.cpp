@@ -32,33 +32,32 @@ int FaceDetector::getFaces(cv::Mat image, std::list<cv::Mat> faces)
 	return 0;
 }
 
+
+
+/*******************************************************************************************/
+/*                               Skin Detector Access Methods                              */
+/*******************************************************************************************/
+
+/*
+
+*/
+void FaceDetector::thresholdChange(int yMin, int yMax, int crMin, int crMax, int cbMin, int cbMax)
+{
+	skin.changeThreshold(yMin, yMax, crMin, crMax, cbMin, cbMax);
+}
+
 /*
    Takes in an input array and spits out an output
 */
 int FaceDetector::skinTonePixels(cv::Mat input)
 {
-	int count = 0;
+	cv::Mat skinMask = skin.getSkin(input);
 
-	for(int r = 0; r < input.rows - SMALLEST_SIZE; r++)
-	{
-		for(int c = 0; c < input.cols - SMALLEST_SIZE; c++)
-		{/*
-			if(r > 1300)
-			{
-			   cout << "row " << r << " col " << c << " total rows " << input.rows << " total cols " << input.cols << endl;
-			}*/
-			cv::Vec3b pix = input.at<cv::Vec3b>(r,c);
+	return skin.skinTonePixels(skinMask);
+}
 
-			//inRange will change the value within the threshold to 255
-			if(pix[0] == 255 && 
-				pix[1] == 255 &&
-				pix[2] == 255)
-			{
-				count++;
-			}
-		}
-	}
-
-	return count;
+cv::Mat FaceDetector::skinMasking(cv::Mat input)
+{
+	return skin.getSkin(input);
 }
 

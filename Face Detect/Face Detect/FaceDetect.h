@@ -16,7 +16,7 @@
 
 #include "SkinDetector.h"
 
-#define SMALLEST_SIZE 48
+
 
 class FaceDetector
 {
@@ -37,6 +37,8 @@ class FaceDetector
 
 	   /* Find the number of skin tone pixels in an image */
 	   int skinTonePixels(cv::Mat input);
+
+	   cv::Mat skinMasking(cv::Mat input);
 
    private:
 	   SkinDetector skin;
