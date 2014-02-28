@@ -7,7 +7,9 @@
 using namespace cv;
 using namespace std;
 
-
+void processImage(string input, SkinDetector detect);
+void end(void);
+void thresholdChange(string input, SkinDetector detect);
 
 int main( int argc, char** argv )
 {
@@ -64,7 +66,7 @@ void processImage(string input, SkinDetector detect)
 
 
 /*IT'S THE END AND IT DOESN'T EVEN MATTER*/
-void end()
+void end(void)
 {
 	cout<< "Goodbye!" << endl;
 	exit(0);
@@ -75,14 +77,6 @@ void thresholdChange(string input, SkinDetector detect)
 {
 	size_t pos;
 	int yMin,yMax, crMin, crMax, cbMin, cbMax;
-
-	cout<< "Please input yMin" << endl;
-	getline(cin, input);
-	yMin = stoul(input, &pos, 10);
-
-	cout<< "Please input yMax" << endl;
-	getline(cin, input);
-	yMax = stoul(input, &pos, 10);
 
 	cout<< "Please input crMin" << endl;
 	getline(cin, input);
@@ -100,5 +94,8 @@ void thresholdChange(string input, SkinDetector detect)
 	getline(cin, input);
 	cbMax = stoul(input, &pos, 10);
 
-	detect.changeThreshold(yMin, yMax, crMin, crMax, cbMin, cbMax);
+	/* OBSERVATIONS
+	   yMin and yMax do not seem to make much of a difference
+	*/
+	detect.changeThreshold(0, 255, crMin, crMax, cbMin, cbMax);
 }

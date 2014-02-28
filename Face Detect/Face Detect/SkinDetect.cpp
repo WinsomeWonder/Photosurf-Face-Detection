@@ -1,10 +1,16 @@
-//SkinDetector.cpp
-//Based on
-//http://razibdeb.wordpress.com/2013/09/10/skin-detection-in-c-using-opencv/
-//Raza Chandra Deb
-//
-//Edited by Emily K Ledbetter
-//
+/*
+      SkinDetector.h
+
+	  Emily Ledbetter
+	  2/27/2014
+
+	  Originally based on code by Raza Chandra Deb found here:
+	  http://razibdeb.wordpress.com/2013/09/10/skin-detection-in-c-using-opencv/
+
+      Geared towards positive error:
+	     Neutral backgrounds
+		 Light Hair Colors
+*/
 
 #include "SkinDetector.h"
 #include"opencv2\opencv.hpp"
