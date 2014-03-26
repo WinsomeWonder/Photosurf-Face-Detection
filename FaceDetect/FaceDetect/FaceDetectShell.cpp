@@ -58,14 +58,14 @@ void processImage(string input, FaceDetector detect)
 	{
 		/*Display original image*/
 		cout << "Here is the original image" << endl;
-		namedWindow( "Original Image", WINDOW_AUTOSIZE );// Create a window for display.
+		namedWindow( "Original Image", WINDOW_NORMAL);// Create a window for display.
 		imshow( "Original Image", image );                   // Show our image inside it.
 		waitKey(0);								// Wait for a keystroke in the window
 
 		/*Display thresholding image*/
 		skinMasked = face.skinMasking(image);
 		cout << "Here is the skin detected image" << endl;
-		namedWindow("Masked Skin Image", WINDOW_AUTOSIZE);
+		namedWindow("Masked Skin Image", WINDOW_NORMAL);
 		imshow("Masked Skin Image", skinMasked);
 		waitKey(0);								// Wait for a keystroke in the window
 
